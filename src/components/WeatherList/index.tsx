@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TemperatureUnits ,Weather, weatherData } from '../../data/weatherData';
+import { TemperatureUnits, Weather, weatherData } from '../../data/weatherData';
 import WeatherCard from '../WeatherCard';
 import "./index.css";
 
@@ -9,25 +9,26 @@ const WeatherList: React.FC = () => {
   const [weatherSearchInputText, setWeatherSearchInputText] = useState<string>('')
   const [favoriteWeathers, setFavoriteWeathers] = useState<Weather[]>([])
 
-  const handleAddFavorite = (weatherId: number) => {
+  const isFavoriteWeather = (weatherId: number): boolean => favoriteWeathers
+    .some(({ id }) => id === weatherId)
+
+  const handleAddFavorite = (weatherId: number): void => {
     const favoriteWeather = weatherList.find(({ id }) => id === weatherId)
 
     if (favoriteWeather) {
       setFavoriteWeathers(prevState => [...prevState, favoriteWeather])
-      setWeatherList(prevState => prevState.filter(({ id }) => id !== weatherId))
     }
   }
 
-  const handleRemoveFavorite = (weatherId: number) => {
+  const handleRemoveFavorite = (weatherId: number): void => {
     const unFavoriteWeather = favoriteWeathers.find(({ id }) => id === weatherId)
 
     if (unFavoriteWeather) {
       setFavoriteWeathers(prevState => prevState.filter(({ id }) => id !== unFavoriteWeather.id))
-      setWeatherList(prevState => [...prevState, unFavoriteWeather])
     }
   }
 
-  const handleTemperatureUnit = () => {
+  const handleTemperatureUnit = (): void => {
    if (temperatureUnit === 'C') {
     setTemperatureUnit('F')
    }
@@ -36,7 +37,9 @@ const WeatherList: React.FC = () => {
    }
   }
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const inputText = event.target.value;
     setWeatherSearchInputText(inputText)
 
@@ -95,7 +98,7 @@ const WeatherList: React.FC = () => {
                   unit={temperatureUnit}
                   onAddFavorite={handleAddFavorite}
                   onRemoveFavorite={handleRemoveFavorite}
-                  isFavorite={false}
+                  isFavorite={isFavoriteWeather(weather.id)}
                 />
               ))
             }
@@ -103,11 +106,11 @@ const WeatherList: React.FC = () => {
         </table>
         <section className="layout-row align-items-center justify-content-center mt-20 mr-20 ml-20">
           <button onClick={handleTemperatureUnit} data-testid="unit-change-button" className="outlined">
-            Switch to {'Celsius'}
+            Switch to {temperatureUnit !== 'C' ? 'Celsius' : 'Fahrenheit' }
           </button>
         </section>
       </div>
-      <h3>Favourite Cities</h3>
+      <h3>Favorite Cities</h3>
       <div className="card w-300 pt-20 pb-5">
         <table className="table favorites">
           <thead>
