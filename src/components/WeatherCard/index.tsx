@@ -2,15 +2,15 @@ import React from 'react';
 import { useMemo } from 'react';
 import { TemperatureUnits, Weather } from '../../data/weatherData';
 
-interface Props {
+interface WeatherCardProps {
   weather: Weather,
   unit: TemperatureUnits,
   onAddFavorite: (weatherId: number) => void,
   onRemoveFavorite: (weatherId: number) => void,
   isFavorite: boolean,
-  }
+}
 
-const WeatherCard: React.FC<Props> = ({
+const WeatherCard: React.FC<WeatherCardProps> = ({
   weather,
   unit,
   onAddFavorite,
