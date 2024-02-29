@@ -1,6 +1,12 @@
+export interface Weather {
+  id: number;
+  city: string;
+  temperature: number;
+  description: 'Sunny' | 'Cloudy' | 'Rainy' | 'Clear' | 'Snowy';
+}
+export type TemperatureUnits = 'C' | 'F'
 
-
-export const weatherData: any[] = [
+export const weatherData: Weather[] = [
   { id: 1, city: 'New York', temperature: 18, description: 'Sunny' },
   { id: 2, city: 'London', temperature: 12, description: 'Cloudy' },
   { id: 3, city: 'Paris', temperature: 16, description: 'Rainy' },

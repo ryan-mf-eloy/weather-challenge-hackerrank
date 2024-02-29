@@ -4,6 +4,63 @@ import WeatherCard from '../WeatherCard';
 import "./index.css";
 
 const WeatherList: React.FC = () => {
+  const [temperatureUnit, setTemperatureUnit] = useState('C')
+  const [weatherList, setWeatherList] = useState<Weather[]>(weatherData)
+  const [weatherSearchInputText, setWeatherSearchInputText] = useState<string>('')
+  const [favoriteWeathers, setFavoriteWeathers] = useState<Weather[]>([])
+
+  const handleAddFavorite = (weatherId: number) => {
+    const favoriteWeather = weatherList.find(({ id }) => id === weatherId)
+    if (favoriteWeather) {
+      setFavoriteWeathers([...favoriteWeathers, favoriteWeather])
+
+      const newWeatherList = weatherList.filter(({ id }) => id !== weatherId)
+      setWeatherList([...newWeatherList])
+    }
+  }
+
+  const handleRemoveFavorite = (weatherId: number) => {
+    const unFavoriteWeather = weatherList.find(({ id }) => id === weatherId)
+    if (unFavoriteWeather) {
+      const allFavoritesWeatherWithoutUnFavorite = favoriteWeathers
+          .filter(({ id }) => id !== unFavoriteWeather.id)
+
+      setFavoriteWeathers([...allFavoritesWeatherWithoutUnFavorite])
+
+      setWeatherList([...weatherList, unFavoriteWeather])
+    }
+  }
+
+  const handleTemperatureUnit = () => {
+   if (temperatureUnit === 'C') {
+    setTemperatureUnit('F')
+   }
+   if (temperatureUnit === 'F') {
+    setTemperatureUnit('C')
+   }
+  }
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputText = event.target.value;
+    setWeatherSearchInputText(inputText)
+
+    const weatherList = weatherData
+      .filter((weather) => {
+        const city = weather.city.toLowerCase();
+        const inputTextLowerCase = inputText.toLowerCase();
+        return city.includes(inputTextLowerCase);
+      })
+    
+    const foundCity = weatherList.length > 0
+    
+    if (foundCity) {
+      setWeatherList([...weatherList])
+    } else {
+      setWeatherList([...weatherData])
+    }
+  }
+
+  const handleClearSearch = () => setWeatherSearchInputText('')
 
   return (
     <div className="layout-column align-items-center justify-content-start weather-list" data-testid="weather-list">
@@ -13,11 +70,12 @@ const WeatherList: React.FC = () => {
         <section className="layout-row align-items-center justify-content-center mt-20 mr-20 ml-20">
           <input
             type="text"
+            value={weatherSearchInputText}
             placeholder="Search city"
-            onChange={() => {}}
+            onChange={handleInputChange}
             data-testid="search-input"
           />
-          <button onClick={() => {}} data-testid="clear-search-button">
+          <button onClick={handleClearSearch} data-testid="clear-search-button">
             Clear search
           </button>
         </section>
@@ -31,18 +89,22 @@ const WeatherList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            <WeatherCard
-              key={6}
-              weather={weatherData[5]}
-              unit={"C"}
-              onAddFavorite={() => {}}
-              onRemoveFavorite={() => {}}
-              isFavorite={false}
-            />
+            {
+              weatherList.map(weather => (
+                <WeatherCard
+                  key={weather.id}
+                  weather={weather}
+                  unit={temperatureUnit}
+                  onAddFavorite={handleAddFavorite}
+                  onRemoveFavorite={handleRemoveFavorite}
+                  isFavorite={false}
+                />
+              ))
+            }
           </tbody>
         </table>
         <section className="layout-row align-items-center justify-content-center mt-20 mr-20 ml-20">
-          <button onClick={() => {}} data-testid="unit-change-button" className="outlined">
+          <button onClick={handleTemperatureUnit} data-testid="unit-change-button" className="outlined">
             Switch to {'Celsius'}
           </button>
         </section>
@@ -59,6 +121,17 @@ const WeatherList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
+            {favoriteWeathers.map(weather => (
+                <WeatherCard
+                  key={weather.id}
+                  weather={weather}
+                  unit={temperatureUnit}
+                  onAddFavorite={handleAddFavorite}
+                  onRemoveFavorite={handleRemoveFavorite}
+                  isFavorite={true}
+                />
+            ))
+            }
           </tbody>
         </table>
       </div>
