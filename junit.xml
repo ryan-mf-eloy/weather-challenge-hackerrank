@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="12" failures="0" errors="0" time="0.975">
-  <testsuite name="Weather Dashboard" errors="0" failures="0" skipped="0" timestamp="2024-02-29T19:00:13" time="0.713" tests="12">
-    <testcase classname="Weather Dashboard search input is cleared when clear button is clicked" name="Weather Dashboard search input is cleared when clear button is clicked" time="0.037">
+<testsuites name="jest tests" tests="12" failures="0" errors="0" time="0.7">
+  <testsuite name="Weather Dashboard" errors="0" failures="0" skipped="0" timestamp="2024-02-29T19:01:30" time="0.443" tests="12">
+    <testcase classname="Weather Dashboard search input is cleared when clear button is clicked" name="Weather Dashboard search input is cleared when clear button is clicked" time="0.032">
     </testcase>
-    <testcase classname="Weather Dashboard default temperature unit is &quot;Celsius&quot;" name="Weather Dashboard default temperature unit is &quot;Celsius&quot;" time="0.007">
+    <testcase classname="Weather Dashboard default temperature unit is &quot;Celsius&quot;" name="Weather Dashboard default temperature unit is &quot;Celsius&quot;" time="0.012">
     </testcase>
     <testcase classname="Weather Dashboard toggles temperature unit between Fahrenheit and Celsius" name="Weather Dashboard toggles temperature unit between Fahrenheit and Celsius" time="0.01">
     </testcase>
-    <testcase classname="Weather Dashboard updates temperature values with 1 decimal place in search-results when Fahrenheit is selected" name="Weather Dashboard updates temperature values with 1 decimal place in search-results when Fahrenheit is selected" time="0.011">
+    <testcase classname="Weather Dashboard updates temperature values with 1 decimal place in search-results when Fahrenheit is selected" name="Weather Dashboard updates temperature values with 1 decimal place in search-results when Fahrenheit is selected" time="0.012">
     </testcase>
-    <testcase classname="Weather Dashboard updates temperature values with 1 decimal place in search-results when Celsius is selected" name="Weather Dashboard updates temperature values with 1 decimal place in search-results when Celsius is selected" time="0.009">
+    <testcase classname="Weather Dashboard updates temperature values with 1 decimal place in search-results when Celsius is selected" name="Weather Dashboard updates temperature values with 1 decimal place in search-results when Celsius is selected" time="0.008">
     </testcase>
-    <testcase classname="Weather Dashboard updates temperature values with 1 decimal place in favorites when Fahrenheit is selected" name="Weather Dashboard updates temperature values with 1 decimal place in favorites when Fahrenheit is selected" time="0.014">
+    <testcase classname="Weather Dashboard updates temperature values with 1 decimal place in favorites when Fahrenheit is selected" name="Weather Dashboard updates temperature values with 1 decimal place in favorites when Fahrenheit is selected" time="0.012">
     </testcase>
-    <testcase classname="Weather Dashboard updates temperature values with 1 decimal place in favorites when Celsius is selected" name="Weather Dashboard updates temperature values with 1 decimal place in favorites when Celsius is selected" time="0.01">
+    <testcase classname="Weather Dashboard updates temperature values with 1 decimal place in favorites when Celsius is selected" name="Weather Dashboard updates temperature values with 1 decimal place in favorites when Celsius is selected" time="0.013">
     </testcase>
-    <testcase classname="Weather Dashboard displays city weather information when searched" name="Weather Dashboard displays city weather information when searched" time="0.005">
+    <testcase classname="Weather Dashboard displays city weather information when searched" name="Weather Dashboard displays city weather information when searched" time="0.006">
     </testcase>
-    <testcase classname="Weather Dashboard adds city to favorite when &quot;Add to favorites&quot; is clicked" name="Weather Dashboard adds city to favorite when &quot;Add to favorites&quot; is clicked" time="0.02">
+    <testcase classname="Weather Dashboard adds city to favorite when &quot;Add to favorites&quot; is clicked" name="Weather Dashboard adds city to favorite when &quot;Add to favorites&quot; is clicked" time="0.009">
     </testcase>
-    <testcase classname="Weather Dashboard removes city from favorite when &quot;Remove from favorites&quot; is clicked from favorites table" name="Weather Dashboard removes city from favorite when &quot;Remove from favorites&quot; is clicked from favorites table" time="0.011">
+    <testcase classname="Weather Dashboard removes city from favorite when &quot;Remove from favorites&quot; is clicked from favorites table" name="Weather Dashboard removes city from favorite when &quot;Remove from favorites&quot; is clicked from favorites table" time="0.007">
     </testcase>
-    <testcase classname="Weather Dashboard removes city from favorite when &quot;Remove from favorites&quot; is clicked from search table" name="Weather Dashboard removes city from favorite when &quot;Remove from favorites&quot; is clicked from search table" time="0.013">
+    <testcase classname="Weather Dashboard removes city from favorite when &quot;Remove from favorites&quot; is clicked from search table" name="Weather Dashboard removes city from favorite when &quot;Remove from favorites&quot; is clicked from search table" time="0.01">
     </testcase>
-    <testcase classname="Weather Dashboard changes temperature unit when unit change button is clicked" name="Weather Dashboard changes temperature unit when unit change button is clicked" time="0.011">
+    <testcase classname="Weather Dashboard changes temperature unit when unit change button is clicked" name="Weather Dashboard changes temperature unit when unit change button is clicked" time="0.006">
     </testcase>
   </testsuite>
 </testsuites>
