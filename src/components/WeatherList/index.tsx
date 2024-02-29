@@ -1,32 +1,31 @@
 import React, { useState } from 'react';
-import { Weather, weatherData } from '../../data/weatherData';
+import { TemperatureUnits ,Weather, weatherData } from '../../data/weatherData';
 import WeatherCard from '../WeatherCard';
 import "./index.css";
 
 const WeatherList: React.FC = () => {
-  const [temperatureUnit, setTemperatureUnit] = useState('C')
+  const [temperatureUnit, setTemperatureUnit] = useState<TemperatureUnits>('C')
   const [weatherList, setWeatherList] = useState<Weather[]>(weatherData)
   const [weatherSearchInputText, setWeatherSearchInputText] = useState<string>('')
   const [favoriteWeathers, setFavoriteWeathers] = useState<Weather[]>([])
 
   const handleAddFavorite = (weatherId: number) => {
     const favoriteWeather = weatherList.find(({ id }) => id === weatherId)
+
     if (favoriteWeather) {
       setFavoriteWeathers(prevState => [...prevState, favoriteWeather])
-
       setWeatherList(prevState => prevState.filter(({ id }) => id !== weatherId))
     }
-}
+  }
 
   const handleRemoveFavorite = (weatherId: number) => {
     const unFavoriteWeather = favoriteWeathers.find(({ id }) => id === weatherId)
+
     if (unFavoriteWeather) {
       setFavoriteWeathers(prevState => prevState.filter(({ id }) => id !== unFavoriteWeather.id))
-
       setWeatherList(prevState => [...prevState, unFavoriteWeather])
     }
-}
-
+  }
 
   const handleTemperatureUnit = () => {
    if (temperatureUnit === 'C') {
@@ -72,7 +71,9 @@ const WeatherList: React.FC = () => {
             onChange={handleInputChange}
             data-testid="search-input"
           />
-          <button onClick={handleClearSearch} data-testid="clear-search-button">
+          <button
+            onClick={handleClearSearch}
+            data-testid="clear-search-button">
             Clear search
           </button>
         </section>
