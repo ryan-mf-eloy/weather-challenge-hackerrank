@@ -12,24 +12,21 @@ const WeatherList: React.FC = () => {
   const handleAddFavorite = (weatherId: number) => {
     const favoriteWeather = weatherList.find(({ id }) => id === weatherId)
     if (favoriteWeather) {
-      setFavoriteWeathers([...favoriteWeathers, favoriteWeather])
+      setFavoriteWeathers(prevState => [...prevState, favoriteWeather])
 
-      const newWeatherList = weatherList.filter(({ id }) => id !== weatherId)
-      setWeatherList([...newWeatherList])
+      setWeatherList(prevState => prevState.filter(({ id }) => id !== weatherId))
     }
-  }
+}
 
   const handleRemoveFavorite = (weatherId: number) => {
-    const unFavoriteWeather = weatherList.find(({ id }) => id === weatherId)
+    const unFavoriteWeather = favoriteWeathers.find(({ id }) => id === weatherId)
     if (unFavoriteWeather) {
-      const allFavoritesWeatherWithoutUnFavorite = favoriteWeathers
-          .filter(({ id }) => id !== unFavoriteWeather.id)
+      setFavoriteWeathers(prevState => prevState.filter(({ id }) => id !== unFavoriteWeather.id))
 
-      setFavoriteWeathers([...allFavoritesWeatherWithoutUnFavorite])
-
-      setWeatherList([...weatherList, unFavoriteWeather])
+      setWeatherList(prevState => [...prevState, unFavoriteWeather])
     }
-  }
+}
+
 
   const handleTemperatureUnit = () => {
    if (temperatureUnit === 'C') {

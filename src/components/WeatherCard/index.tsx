@@ -2,21 +2,21 @@ import React from 'react';
 import { useMemo } from 'react';
 import { TemperatureUnits, Weather } from '../../data/weatherData';
 
-const WeatherCard: React.FC<any> = ({
-  weather,
-  unit,
-  onAddFavorite,
-  onRemoveFavorite,
-  isFavorite,
-}: {
+interface Props {
   weather: Weather,
   unit: TemperatureUnits,
   onAddFavorite: (weatherId: number) => void,
   onRemoveFavorite: (weatherId: number) => void,
   isFavorite: boolean,
-  }) => {
-  
+  }
 
+const WeatherCard: React.FC<Props> = ({
+  weather,
+  unit,
+  onAddFavorite,
+  onRemoveFavorite,
+  isFavorite,
+}) => {
   const memoizedCalcTemperature = useMemo(() => (temperature: number): number => {
     if (unit === "F") {
       const fahrenheit = (temperature * 9 / 5) + 32;
